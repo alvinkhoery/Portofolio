@@ -6,67 +6,47 @@
   <title>Portfolio — Alvin Akhbar Khoery | Teknik Geomatika</title>
   <meta name="description" content="Portfolio Alvin Akhbar Khoery — Lulusan Teknik Geomatika dengan keahlian pemetaan udara, SIG, dan analisis data spasial.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #0a1420;
-      --card: rgba(15, 23, 36, 0.85);
-      --accent1: #00bcd4;
-      --accent2: #2196f3;
+      --bg: #0f1724;
+      --card: #101828;
+      --accent1: #f97316;
+      --accent2: #2dd4bf;
       --muted: #a1accb;
-      --grid: rgba(255,255,255,0.04);
-      font-family: 'Inter', sans-serif;
+      --glass: rgba(255, 255, 255, 0.04);
       color-scheme: dark;
+      font-family: 'Inter', sans-serif;
     }
 
     body {
       margin: 0;
-      background: radial-gradient(circle at top left, #12243a, #0a1420);
+      background: radial-gradient(circle at top left, #1e293b, #0f1724);
       color: #e6eef6;
       line-height: 1.6;
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* ☁️ Awan lembut */
-    .cloud {
-      position: fixed;
-      top: 0;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
-      filter: blur(60px);
-      animation: drift 60s linear infinite;
-      z-index: -2;
-    }
-    .cloud:nth-child(1) { width: 300px; height: 150px; top: 10%; left: -200px; animation-delay: 0s; }
-    .cloud:nth-child(2) { width: 400px; height: 200px; top: 30%; left: -400px; animation-delay: 15s; opacity: 0.6; }
-    .cloud:nth-child(3) { width: 250px; height: 120px; top: 60%; left: -300px; animation-delay: 30s; opacity: 0.5; }
-
-    @keyframes drift {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(1800px); }
-    }
-
-    /* 🌐 Grid peta */
+    /* 🌤 Background awan lembut */
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 200%;
-      height: 200%;
-      background-image: 
-        linear-gradient(var(--grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-      background-size: 80px 80px;
-      transform: rotate(2deg);
-      z-index: -3;
+      inset: 0;
+      background: url('https://i.imgur.com/nRgh7xi.png') repeat;
+      opacity: 0.07;
+      animation: moveClouds 120s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveClouds {
+      from { background-position: 0 0; }
+      to { background-position: 10000px 0; }
     }
 
     .container {
       max-width: 1150px;
       margin: 40px auto;
       padding: 20px;
-      backdrop-filter: blur(10px);
     }
 
     header {
@@ -75,7 +55,7 @@
       align-items: center;
       gap: 16px;
       padding-bottom: 10px;
-      border-bottom: 1px solid var(--grid);
+      border-bottom: 2px solid var(--glass);
     }
 
     .brand {
@@ -87,13 +67,13 @@
     .logo {
       width: 60px;
       height: 60px;
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
       background: linear-gradient(135deg, var(--accent1), var(--accent2));
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 12px rgba(0, 188, 212, 0.6);
+      box-shadow: 0 0 12px rgba(249, 115, 22, 0.6);
     }
 
     .logo-img {
@@ -104,7 +84,7 @@
     }
 
     h1 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       margin: 0;
       font-weight: 700;
     }
@@ -135,11 +115,12 @@
       border-radius: 14px;
       box-shadow: 0 6px 18px rgba(2, 6, 23, 0.7);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(4px);
     }
 
     .card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 22px rgba(33, 150, 243, 0.25);
+      box-shadow: 0 8px 22px rgba(249, 115, 22, 0.3);
     }
 
     .intro h2 {
@@ -156,7 +137,7 @@
     }
 
     .chip {
-      background: rgba(0, 188, 212, 0.15);
+      background: rgba(249, 115, 22, 0.15);
       padding: 8px 10px;
       border-radius: 8px;
       color: var(--accent1);
@@ -183,22 +164,17 @@
       color: #012023;
     }
 
-    .muted {
-      color: var(--muted);
-    }
-
     footer {
       margin: 40px 0 50px 0;
       color: var(--muted);
       text-align: center;
-      border-top: 1px solid var(--grid);
+      border-top: 1px solid var(--glass);
       padding-top: 20px;
     }
 
-    /* 🛰️ Galeri */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 18px;
       margin-top: 16px;
     }
@@ -212,7 +188,7 @@
 
     .gallery img:hover {
       transform: scale(1.04);
-      box-shadow: 0 0 18px rgba(0, 188, 212, 0.4);
+      box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
     }
 
     .profile-img {
@@ -220,7 +196,7 @@
       border-radius: 50%;
       border: 3px solid var(--accent1);
       object-fit: cover;
-      box-shadow: 0 0 12px rgba(0, 188, 212, 0.5);
+      box-shadow: 0 0 12px rgba(249, 115, 22, 0.5);
       margin-bottom: 16px;
     }
 
@@ -228,13 +204,11 @@
       border-radius: 10px;
     }
 
-    /* 📜 Sertifikat */
+    /* 🔹 Ukuran sertifikat diperkecil */
     #skills .gallery img {
-      width: 75%;
+      width: 90%;
       margin: 0 auto;
-      display: block;
-      border-radius: 10px;
-      border: 2px solid rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.08);
     }
 
     @media (max-width: 880px) {
@@ -249,11 +223,6 @@
 </head>
 
 <body>
-  <!-- ☁️ Awan-awan -->
-  <div class="cloud"></div>
-  <div class="cloud"></div>
-  <div class="cloud"></div>
-
   <div class="container">
     <header>
       <div class="brand">
@@ -262,13 +231,14 @@
         </div>
         <div>
           <h1>Alvin Akhbar Khoery</h1>
-          <div class="muted">Teknik Geomatika — Pemetaan Udara | SIG | Analisis Spasial</div>
+          <div class="muted">Lulusan Teknik Geomatika — Pemetaan Udara | SIG | Analisis Spasial</div>
         </div>
       </div>
       <nav>
         <a href="#about">Tentang</a>
+        <a href="#experience">Pengalaman</a>
         <a href="#gallery">Galeri</a>
-        <a href="#maps">Peta</a>
+        <a href="#maps">Output Peta</a>
         <a href="#skills">Keahlian</a>
         <a href="#contact">Kontak</a>
       </nav>
@@ -283,16 +253,6 @@
           <span class="chip">ArcGIS & Global Mapper</span>
           <span class="chip">Analisis Spasial</span>
           <span class="chip">Agisoft</span>
-        </div>
-
-        <div style="margin-top:20px">
-          <h3 style="margin-bottom:8px;">Pencapaian & Sorotan</h3>
-          <ul class="muted" style="line-height:1.7">
-            <li>🛰️ Mampu membuat orthomosaic akurat dari 200 ha citra drone DJI Phantom.</li>
-            <li>📍 Aktif dalam proyek pemetaan batas wilayah desa berbasis SIG di Lampung.</li>
-            <li>🌿 Terlibat dalam pengembangan wilayah agroforestri berbasis data spasial (PKM Girimulyo).</li>
-            <li>🏅 Bersertifikat <strong>Pilot Drone</strong> (Kemenhub RI) dan <strong>Ahli K3 Umum</strong> (BNSP).</li>
-          </ul>
         </div>
       </div>
 
@@ -318,18 +278,19 @@
 
     <section id="maps" style="margin-top:20px">
       <h3>Output Peta & Video</h3>
-      <p class="muted">Hasil pemetaan udara dan dokumentasi kegiatan:</p>
+      <p class="muted">Hasil pemetaan udara dan video dokumentasi kegiatan:</p>
       <div class="gallery">
         <img src="Peta Ortho.jpg" alt="Peta Orthophoto">
         <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;">
-          <iframe src="https://www.youtube.com/embed/5ZKs7kHjFLo?si=FzDAO0Dc_AtjZm50"
+          <iframe 
+            src="https://www.youtube.com/embed/5ZKs7kHjFLo?si=FzDAO0Dc_AtjZm50"
             title="Video PKM Girimulyo"
             style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-            allowfullscreen></iframe>
+            allowfullscreen>
+          </iframe>
         </div>
         <img src="Peta Batas.jpeg" alt="Peta Batas Wilayah">
       </div>
-      <p class="muted" style="text-align:center;margin-top:10px;">🎥 Video kegiatan PKM Girimulyo (2024)</p>
     </section>
 
     <section id="skills" style="margin-top:20px">
@@ -346,13 +307,12 @@
           <img src="K3.jpeg" alt="Sertifikat Ahli K3 Umum BNSP">
           <img src="Pilot.jpeg" alt="Sertifikat Pilot Drone Kemenhub RI">
         </div>
-        <p class="muted" style="margin-top:8px;">📜 Sertifikat resmi Ahli K3 Umum (BNSP) & Pilot Drone (Kemenhub RI).</p>
       </div>
     </section>
 
     <section id="contact" class="card" style="margin-top:20px">
       <h3>Hubungi Saya</h3>
-      <p class="muted">Tertarik bekerja sama atau ingin berdiskusi terkait proyek geomatika? Hubungi saya melalui email atau LinkedIn.</p>
+      <p class="muted">Tertarik bekerja sama atau membutuhkan informasi lebih lanjut? Silakan hubungi saya melalui email atau LinkedIn.</p>
       <button class="btn btn-primary" onclick="location.href='mailto:alvinkhoery97@gmail.com'">Kirim Email</button>
     </section>
 
