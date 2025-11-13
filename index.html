@@ -5,78 +5,65 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Portfolio — Alvin Akhbar Khoery | Teknik Geomatika</title>
   <meta name="description" content="Portfolio Alvin Akhbar Khoery — Teknik Geomatika" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --accent1: #f97316;
-      --accent2: #2dd4bf;
-      --muted: #a1accb;
-      --bg: #0f1724;
+      --accent1:#f97316;
+      --accent2:#2dd4bf;
+      --muted:#a1accb;
+      --bg:#0f1724;
     }
-    html,body{height:100%;margin:0;font-family:'Inter',sans-serif;background:radial-gradient(circle at top left,#1e293b,#0f1724);color:#e6eef6;}
-    /* ====== Globe background container ====== */
-    #globe-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;                 /* behind content */
-      pointer-events: none;       /* don't block clicks */
-      opacity: 0.28;              /* subtle */
-      mix-blend-mode: screen;     /* lighten effect — looks like clouds */
-      filter: blur(8px) saturate(1.05);
+    html,body{height:100%;margin:0;background:radial-gradient(circle at top left,#1e293b,#0f1724);font-family:'Inter',sans-serif;color:#e6eef6;overflow-x:hidden;}
+
+    /* === Globe Background === */
+    #globe-bg{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      opacity:0.25;
+      filter:blur(6px);
     }
-    /* canvas fills screen */
-    #globe-canvas { width:100%; height:100%; display:block; }
+    canvas{width:100%;height:100%;display:block;}
 
-    /* ====== Page content ====== */
-    .page {
-      position: relative;
-      z-index: 1;                 /* above globe */
-      max-width: 1150px;
-      margin: 40px auto;
-      padding: 20px;
-    }
+    /* === Page Content === */
+    .page{max-width:1150px;margin:0 auto;padding:30px;position:relative;z-index:1;}
+    header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.1);}
+    .brand{display:flex;align-items:center;gap:14px;}
+    .logo{width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(249,115,22,0.45);}
+    .logo img{width:85%;border-radius:10px;}
+    h1{margin:0;font-size:1.35rem;}
+    nav a{margin-left:16px;color:var(--muted);text-decoration:none;font-weight:600;transition:color .3s;}
+    nav a:hover{color:var(--accent1);}
 
-    header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:10px;border-bottom:2px solid rgba(255,255,255,0.03);}
-    .brand{display:flex;gap:14px;align-items:center;}
-    .logo{width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(249,115,22,0.45)}
-    .logo img{width:86%;height:86%;object-fit:contain;border-radius:9px}
-    h1{font-size:1.35rem;margin:0}
-    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600;transition:color .25s}
-    nav a:hover{color:var(--accent1)}
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:30px;align-items:start;}
+    .card{background:rgba(16,24,40,0.9);padding:20px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.4);backdrop-filter:blur(5px);}
+    .intro h2{font-size:1.9rem;margin:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .chip{background:rgba(249,115,22,0.14);color:var(--accent1);padding:6px 10px;border-radius:8px;margin:4px;display:inline-block;font-weight:600;}
 
-    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:28px;align-items:start}
-    .card{background:rgba(16,24,40,0.86);padding:22px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6);backdrop-filter:blur(4px)}
-    .intro h2{font-size:1.9rem;margin:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .chip{background:rgba(249,115,22,0.14);padding:8px 10px;border-radius:8px;color:var(--accent1);font-weight:600;margin-right:6px;display:inline-block}
-    .profile-img{width:100%;border-radius:50%;border:3px solid var(--accent1);object-fit:cover;box-shadow:0 0 12px rgba(249,115,22,0.45);margin-bottom:14px}
+    .profile-img{width:100%;border-radius:50%;border:3px solid var(--accent1);object-fit:cover;box-shadow:0 0 12px rgba(249,115,22,0.45);margin-bottom:14px;}
 
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:14px}
-    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:10px;transition:transform .25s,box-shadow .25s}
-    .gallery img:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.6)}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:14px;}
+    .gallery img{width:100%;height:190px;object-fit:cover;border-radius:10px;transition:transform .25s,box-shadow .25s;}
+    .gallery img:hover{transform:translateY(-6px);box-shadow:0 10px 25px rgba(0,0,0,0.6);}
 
-    footer{margin:40px 0 50px 0;color:var(--muted);text-align:center;border-top:1px solid rgba(255,255,255,0.03);padding-top:16px}
+    footer{text-align:center;color:var(--muted);margin:40px 0;border-top:1px solid rgba(255,255,255,0.1);padding-top:12px;}
 
-    /* small screens */
-    @media (max-width:880px){
-      .hero{grid-template-columns:1fr}
-      nav{display:none}
-      .gallery img{height:160px}
+    @media(max-width:880px){
+      .hero{grid-template-columns:1fr;}
+      nav{display:none;}
+      .gallery img{height:160px;}
     }
   </style>
 </head>
-
 <body>
-  <!-- 3D Globe Background (canvas) -->
-  <div id="globe-bg" aria-hidden="true">
-    <canvas id="globe-canvas"></canvas>
-  </div>
+  <div id="globe-bg"><canvas id="globe-canvas"></canvas></div>
 
-  <!-- Page content (kept names of your images unchanged) -->
   <div class="page">
     <header>
       <div class="brand">
-        <div class="logo"><img src="Itera.png" alt="Logo Alvin"></div>
+        <div class="logo"><img src="Itera.png" alt="Logo"></div>
         <div>
           <h1>Alvin Akhbar Khoery</h1>
           <div style="color:var(--muted)">Lulusan Teknik Geomatika — Pemetaan Udara | SIG | Analisis Spasial</div>
@@ -85,7 +72,6 @@
       <nav>
         <a href="#about">Tentang</a>
         <a href="#gallery">Galeri</a>
-        <a href="#maps">Peta</a>
         <a href="#skills">Keahlian</a>
         <a href="#contact">Kontak</a>
       </nav>
@@ -94,36 +80,25 @@
     <main class="hero">
       <div class="card intro">
         <h2>Halo, Saya Alvin</h2>
-        <p style="color:var(--muted)">Lulusan <strong>Teknik Geomatika</strong> dengan pengalaman pemetaan udara, fotogrametri, dan analisis spasial. Terampil dalam ArcGIS, Global Mapper, Agisoft Metashape, dan pemrosesan data drone.</p>
-        <div style="margin-top:10px">
+        <p style="color:var(--muted)">Lulusan <b>Teknik Geomatika</b> dengan pengalaman dalam pemetaan udara, fotogrametri, dan analisis spasial. Terampil dalam ArcGIS, Global Mapper, Agisoft Metashape, dan pemrosesan data drone.</p>
+        <div>
           <span class="chip">Pemetaan Udara</span>
           <span class="chip">Analisis Spasial</span>
           <span class="chip">Fotogrametri</span>
         </div>
-
-        <section style="margin-top:18px">
-          <h3 style="margin:0 0 8px 0;color:var(--accent2)">Pencapaian</h3>
-          <ul style="color:var(--muted);line-height:1.6;margin:0;padding-left:1rem">
-            <li>Orthomosaic 200 ha (DJI Phantom).</li>
-            <li>Proyek penetapan batas desa (Kartometrik).</li>
-            <li>Program PKM pengembangan agroforestri berbasis spasial.</li>
-          </ul>
-        </section>
       </div>
 
       <aside class="card">
         <img src="foto profil.jpeg" alt="Foto Alvin" class="profile-img">
-        <h3 style="margin:0 0 8px 0">Kontak</h3>
-        <div style="color:var(--muted)">
-          <div>📍 Karawang, Jawa Barat</div>
-          <div>📧 <a href="mailto:alvinkhoery97@gmail.com" style="color:var(--muted)">alvinkhoery97@gmail.com</a></div>
-          <div>📞 0812-8534-4776</div>
-        </div>
+        <h3>Kontak</h3>
+        <p style="color:var(--muted)">📍 Karawang, Jawa Barat<br>
+        📧 <a href="mailto:alvinkhoery97@gmail.com" style="color:var(--muted)">alvinkhoery97@gmail.com</a><br>
+        📞 0812-8534-4776</p>
       </aside>
     </main>
 
-    <section id="gallery" style="margin-top:20px">
-      <h3 style="margin-bottom:8px">Galeri</h3>
+    <section id="gallery">
+      <h3>Galeri</h3>
       <div class="gallery">
         <img src="PKM.jpg" alt="PKM">
         <img src="Drone.jpeg" alt="Drone">
@@ -133,203 +108,63 @@
     </section>
 
     <section id="skills" style="margin-top:20px">
-      <h3 style="margin-bottom:8px">Keahlian & Sertifikasi</h3>
-      <div style="color:var(--muted);background:rgba(255,255,255,0.02);padding:14px;border-radius:10px">
-        <strong>Perangkat:</strong> ArcGIS, AutoCAD, Agisoft Metashape, Mission Planner<br>
-        <strong>Sertifikat:</strong> Pilot Drone (Kemenhub), Ahli K3 Umum (BNSP)
-      </div>
-
-      <div style="margin-top:12px">
-        <h4 style="margin:12px 0 8px 0">Sertifikat</h4>
-        <div class="gallery">
-          <img src="K3.jpeg" alt="Sertifikat K3">
-          <img src="Pilot.jpeg" alt="Sertifikat Pilot">
-        </div>
+      <h3>Keahlian & Sertifikasi</h3>
+      <p style="color:var(--muted)">ArcGIS, AutoCAD, Agisoft Metashape, Mission Planner, Global Mapper.</p>
+      <div class="gallery">
+        <img src="K3.jpeg" alt="Sertifikat K3">
+        <img src="Pilot.jpeg" alt="Sertifikat Pilot">
       </div>
     </section>
 
-    <section id="contact" style="margin-top:24px">
-      <div class="card">
-        <h3 style="margin-top:0">Hubungi Saya</h3>
-        <p style="color:var(--muted)">Tertarik bekerja sama? Kirim email atau hubungi lewat nomor yang tertera.</p>
-        <button style="background:linear-gradient(90deg,var(--accent1),var(--accent2));border:none;padding:10px 14px;border-radius:10px;color:#012023;font-weight:700;cursor:pointer" onclick="location.href='mailto:alvinkhoery97@gmail.com'">Kirim Email</button>
-      </div>
-    </section>
-
-    <footer>
-      © <span id="year"></span> Alvin Akhbar Khoery — Teknik Geomatika.
-    </footer>
+    <footer>© <span id="year"></span> Alvin Akhbar Khoery — Teknik Geomatika.</footer>
   </div>
 
-  <!-- Three.js (GLobe background) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
   <script>
-  // Background 3D globe: subtle, slow, behind content
-  (function(){
-    const canvasContainer = document.getElementById('globe-bg');
-    const canvas = document.getElementById('globe-canvas');
+  const canvas = document.getElementById('globe-canvas');
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true});
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 100);
+  camera.position.set(0,0,6);
+  const light = new THREE.DirectionalLight(0xffffff,1);
+  light.position.set(5,3,5);
+  scene.add(light);
+  scene.add(new THREE.AmbientLight(0xffffff,0.6));
 
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 0); // transparent
+  const loader = new THREE.TextureLoader();
+  const earthTex = loader.load('https://cdn.jsdelivr.net/gh/fireship-io/threejs-earth/earthmap4k.jpg');
+  const bump = loader.load('https://cdn.jsdelivr.net/gh/fireship-io/threejs-earth/earthbump4k.jpg');
+  const globe = new THREE.Mesh(
+    new THREE.SphereGeometry(2.3,64,64),
+    new THREE.MeshPhongMaterial({map:earthTex,bumpMap:bump,bumpScale:0.05})
+  );
+  scene.add(globe);
 
-    // Scene & camera
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.set(0, 0, 8);
+  const clouds = new THREE.Mesh(
+    new THREE.SphereGeometry(2.33,64,64),
+    new THREE.MeshLambertMaterial({
+      map: loader.load('https://cdn.jsdelivr.net/gh/ajay2507/threejs-earth-texture@main/earthcloudmap.jpg'),
+      transparent:true, opacity:0.4
+    })
+  );
+  scene.add(clouds);
 
-    // Lights
-    const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 0.8);
-    scene.add(hemi);
-    const dir = new THREE.DirectionalLight(0xffffff, 0.6);
-    dir.position.set(5, 3, 5);
-    scene.add(dir);
+  function animate(){
+    requestAnimationFrame(animate);
+    globe.rotation.y += 0.0012;
+    clouds.rotation.y += 0.0014;
+    renderer.render(scene,camera);
+  }
+  animate();
 
-    // Create globe group
-    const globeGroup = new THREE.Group();
-    scene.add(globeGroup);
+  window.addEventListener('resize',()=>{
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth,window.innerHeight);
+  });
 
-    // Sphere geometry (slightly large — will be blurred by CSS)
-    const R = 2.6;
-    const geometry = new THREE.SphereGeometry(R, 48, 48);
-
-    // Prepare textures (with safe fallback)
-    const loader = new THREE.TextureLoader();
-    let earthMap = null, cloudMap = null;
-
-    // URLs (fast CDN). If these fail, fallback shader is used.
-    const URL_EARTH = 'https://cdn.jsdelivr.net/gh/fireship-io/threejs-earth/earthmap4k.jpg';
-    const URL_CLOUDS = 'https://cdn.jsdelivr.net/gh/ajay2507/threejs-earth-texture@main/earthcloudmap.jpg';
-
-    let texturesLoaded = 0;
-    function tryStart(){
-      texturesLoaded++;
-      // wait until both tried (even if null) then init
-      if(texturesLoaded >= 2) initMaterials();
-    }
-
-    loader.load(URL_EARTH,
-      (tex)=>{ earthMap = tex; tryStart(); },
-      undefined,
-      ()=>{ console.warn('Earth texture failed to load'); tryStart(); }
-    );
-
-    loader.load(URL_CLOUDS,
-      (tex)=>{ cloudMap = tex; tryStart(); },
-      undefined,
-      ()=>{ console.warn('Cloud texture failed to load'); tryStart(); }
-    );
-
-    // Fallback gradient material if earthMap null
-    function gradientMaterial(){
-      return new THREE.ShaderMaterial({
-        uniforms: {
-          color1: { value: new THREE.Color(0x0d3b66) },
-          color2: { value: new THREE.Color(0xff7a00) }
-        },
-        vertexShader: `varying vec3 vPos; void main(){ vPos = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
-        fragmentShader: `varying vec3 vPos; uniform vec3 color1; uniform vec3 color2;
-                          void main(){ float h = normalize(vPos).y * 0.5 + 0.5; gl_FragColor = vec4(mix(color1,color2,h), 1.0);} `,
-        transparent: true
-      });
-    }
-
-    // After textures load (or attempted), create materials
-    function initMaterials(){
-      // Earth material
-      let earthMat;
-      if(earthMap){
-        earthMap.anisotropy = 4;
-        earthMat = new THREE.MeshPhongMaterial({
-          map: earthMap,
-          shininess: 6
-        });
-      } else {
-        earthMat = gradientMaterial();
-      }
-
-      const earthMesh = new THREE.Mesh(geometry, earthMat);
-      globeGroup.add(earthMesh);
-
-      // Cloud layer (slightly larger sphere, transparent)
-      if(cloudMap){
-        cloudMap.anisotropy = 4;
-        const cloudMat = new THREE.MeshLambertMaterial({
-          map: cloudMap,
-          transparent: true,
-          opacity: 0.45,
-          depthWrite: false
-        });
-        const cloudMesh = new THREE.Mesh(new THREE.SphereGeometry(R*1.01, 48, 48), cloudMat);
-        globeGroup.add(cloudMesh);
-
-        // rotate clouds slightly different speed
-        cloudMesh.userData = { speed: 0.0006 };
-      }
-
-      // subtle atmosphere glow (very soft)
-      const atmosphereMat = new THREE.ShaderMaterial({
-        uniforms: { c: { value: 0.5 }, p: { value: 2.0 }, glowColor: { value: new THREE.Color(0x2dd4bf) } },
-        vertexShader: `varying vec3 vNormal; void main(){ vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
-        fragmentShader: `varying vec3 vNormal; uniform float c; uniform float p; uniform vec3 glowColor;
-                         void main(){ float intensity = pow(c - dot(vNormal, vec3(0,0,1.0)), p); gl_FragColor = vec4(glowColor * intensity, intensity*0.12); }`,
-        blending: THREE.AdditiveBlending,
-        side: THREE.BackSide,
-        transparent: true
-      });
-      const atmosphereMesh = new THREE.Mesh(new THREE.SphereGeometry(R*1.07, 32, 32), atmosphereMat);
-      globeGroup.add(atmosphereMesh);
-
-      // Position and subtle scale
-      globeGroup.position.set(0, 0, 0);
-
-      // animation loop
-      let t = 0;
-      function animate(){
-        requestAnimationFrame(animate);
-        // globe rotation
-        globeGroup.rotation.y += 0.0009; // very slow
-        globeGroup.rotation.x = Math.sin(t * 0.0004) * 0.02; // gentle tilt
-        // cloud rotation if present
-        globeGroup.children.forEach(child=>{
-          if(child.userData && child.userData.speed) child.rotation.y += child.userData.speed;
-        });
-        // subtle camera slow orbit for parallax
-        camera.position.x = Math.sin(t*0.00035) * 0.6;
-        camera.position.y = Math.sin(t*0.00018) * 0.15;
-        camera.lookAt(0,0,0);
-        renderer.render(scene, camera);
-        t++;
-      }
-      animate();
-    }
-
-    // resize handling
-    function onResize(){
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      renderer.setSize(w, h);
-      camera.aspect = w/h;
-      camera.updateProjectionMatrix();
-    }
-    window.addEventListener('resize', onResize, { passive:true });
-
-    // safety fallback in case textures never resolved after 3s
-    setTimeout(()=>{
-      if(scene.children.length === 0){
-        // make fallback gradient globe
-        const fallback = new THREE.Mesh(geometry, gradientMaterial());
-        globeGroup.add(fallback);
-        // add subtle light so it's visible
-        scene.add(new THREE.AmbientLight(0xffffff, 0.9));
-        initMaterials(); // if not already started, this will add atmosphere etc.
-      }
-    }, 3000);
-  })();
-
-  // set year
   document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
