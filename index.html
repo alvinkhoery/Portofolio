@@ -6,6 +6,7 @@
   <title>Portfolio — Alvin Akhbar Khoery | Teknik Geomatika</title>
   <meta name="description" content="Portfolio Alvin Akhbar Khoery — Lulusan Teknik Geomatika dengan keahlian pemetaan udara, SIG, dan analisis data spasial.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #0f1724;
@@ -24,14 +25,7 @@
       color: #e6eef6;
       line-height: 1.6;
     }
-<!-- 🔸 Animasi Intro Globe -->
-<div id="intro-animation">
-  <div id="globe"></div>
-  <div id="loading-text">Menampilkan Indonesia...</div>
-</div>
 
-<!-- 🔹 Bungkus seluruh konten utama kamu di dalam div ini -->
-<div id="portfolio-content" style="opacity:0; transition:opacity 1s ease;">
     .container {
       max-width: 1150px;
       margin: 40px auto;
@@ -204,70 +198,55 @@
         display: none;
       }
     }
+
+    /* 🌍 Style untuk animasi globe intro */
+    #intro-animation {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #001220, #000);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 1s ease;
+    }
+
+    #globe {
+      width: 180px;
+      height: 180px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg') 
+        no-repeat center/cover;
+      border-radius: 50%;
+      box-shadow: 0 0 40px rgba(45,212,191,0.6);
+    }
+
+    #loading-text {
+      margin-top: 20px;
+      color: #a1accb;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 1px;
+      font-size: 1rem;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
   </style>
 </head>
-<!-- GSAP untuk animasi -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script>
-  window.addEventListener('load', () => {
-    const tl = gsap.timeline();
-
-    // Zoom in animasi globe
-    tl.fromTo("#globe", 
-      { scale: 1, rotate: 0 },
-      { scale: 8, rotate: 25, duration: 3, ease: "power2.inOut" }
-    )
-    // Hilangkan animasi intro
-    .to("#intro-animation", { opacity: 0, duration: 1, delay: 0.5 })
-    // Tampilkan konten portofolio
-    .to("#portfolio-content", { opacity: 1, duration: 1 }, "-=0.5");
-
-    // Hapus elemen intro setelah animasi selesai
-    setTimeout(() => {
-      document.getElementById('intro-animation').remove();
-    }, 5000);
-  });
-</script>
-
-<style>
-  /* 🌍 Style untuk animasi globe intro */
-  #intro-animation {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at center, #001220, #000);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    transition: opacity 1s ease;
-  }
-
-  #globe {
-    width: 180px;
-    height: 180px;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg') 
-      no-repeat center/cover;
-    border-radius: 50%;
-    box-shadow: 0 0 40px rgba(45,212,191,0.6);
-  }
-
-  #loading-text {
-    margin-top: 20px;
-    color: #a1accb;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 1px;
-    font-size: 1rem;
-    animation: blink 1.5s infinite;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-  }
-</style>
 
 <body>
+
+  <!-- 🔸 Animasi Intro Globe -->
+  <div id="intro-animation">
+    <div id="globe"></div>
+    <div id="loading-text">Menampilkan Indonesia...</div>
+  </div>
+
+  <!-- 🔹 Semua konten utama -->
+  <div id="portfolio-content" style="opacity:0; transition:opacity 1s ease;">
   <div class="container">
     <header>
       <div class="brand">
@@ -377,9 +356,27 @@
       © <span id="year"></span> Alvin Akhbar Khoery — Teknik Geomatika.
     </footer>
   </div>
+  </div> <!-- penutup #portfolio-content -->
 
+  <!-- GSAP untuk animasi -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
+    window.addEventListener('load', () => {
+      const tl = gsap.timeline();
+
+      tl.fromTo("#globe", 
+        { scale: 1, rotate: 0 },
+        { scale: 8, rotate: 25, duration: 3, ease: "power2.inOut" }
+      )
+      .to("#intro-animation", { opacity: 0, duration: 1, delay: 0.5 })
+      .to("#portfolio-content", { opacity: 1, duration: 1 }, "-=0.5");
+
+      setTimeout(() => {
+        document.getElementById('intro-animation').remove();
+      }, 5000);
+    });
+
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
-</html>  
+</html>
