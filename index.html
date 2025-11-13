@@ -24,6 +24,50 @@
       background: radial-gradient(circle at top left, #1e293b, #0f1724);
       color: #e6eef6;
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* 🌍 Globe 3D Intro */
+    #intro-animation {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #001220, #000);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 1.5s ease;
+    }
+
+    #globe3d {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #loading-text {
+      position: relative;
+      z-index: 10;
+      margin-top: 30px;
+      color: #a1accb;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 1px;
+      font-size: 1.1rem;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* Konten utama */
+    #portfolio-content {
+      opacity: 0;
+      transition: opacity 1.5s ease;
     }
 
     .container {
@@ -198,185 +242,160 @@
         display: none;
       }
     }
-
-    /* 🌍 Style untuk animasi globe intro */
-    #intro-animation {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at center, #001220, #000);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 1s ease;
-    }
-
-    #globe {
-      width: 180px;
-      height: 180px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg') 
-        no-repeat center/cover;
-      border-radius: 50%;
-      box-shadow: 0 0 40px rgba(45,212,191,0.6);
-    }
-
-    #loading-text {
-      margin-top: 20px;
-      color: #a1accb;
-      font-family: 'Inter', sans-serif;
-      letter-spacing: 1px;
-      font-size: 1rem;
-      animation: blink 1.5s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
-    }
   </style>
+
+  <!-- THREE.js untuk globe -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.148.0/examples/js/controls/OrbitControls.min.js"></script>
 </head>
 
 <body>
-
-  <!-- 🔸 Animasi Intro Globe -->
+  <!-- 🔹 Animasi Intro Globe -->
   <div id="intro-animation">
-    <div id="globe"></div>
+    <div id="globe3d"></div>
     <div id="loading-text">Menampilkan Indonesia...</div>
   </div>
 
-  <!-- 🔹 Semua konten utama -->
-  <div id="portfolio-content" style="opacity:0; transition:opacity 1s ease;">
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">
-          <img src="Itera.png" alt="Logo Alvin" class="logo-img">
+  <!-- 🔹 Konten utama -->
+  <div id="portfolio-content">
+    <div class="container">
+      <header>
+        <div class="brand">
+          <div class="logo">
+            <img src="Itera.png" alt="Logo Alvin" class="logo-img">
+          </div>
+          <div>
+            <h1>Alvin Akhbar Khoery</h1>
+            <div class="muted">Lulusan Teknik Geomatika — Pemetaan Udara | SIG | Analisis Spasial</div>
+          </div>
         </div>
-        <div>
-          <h1>Alvin Akhbar Khoery</h1>
-          <div class="muted">Lulusan Teknik Geomatika — Pemetaan Udara | SIG | Analisis Spasial</div>
-        </div>
-      </div>
-      <nav>
-        <a href="#about">Tentang</a>
-        <a href="#experience">Pengalaman</a>
-        <a href="#gallery">Galeri</a>
-        <a href="#maps">Output Peta</a>
-        <a href="#skills">Keahlian</a>
-        <a href="#contact">Kontak</a>
-      </nav>
-    </header>
+        <nav>
+          <a href="#about">Tentang</a>
+          <a href="#experience">Pengalaman</a>
+          <a href="#gallery">Galeri</a>
+          <a href="#maps">Output Peta</a>
+          <a href="#skills">Keahlian</a>
+          <a href="#contact">Kontak</a>
+        </nav>
+      </header>
 
-    <main class="hero">
-      <div class="card intro">
-        <h2>Halo, Saya Alvin</h2>
-        <p>Saya lulusan <strong>Teknik Geomatika, Institut Teknologi Sumatera</strong> dengan minat di bidang pemetaan udara, fotogrametri, dan analisis data spasial. Berpengalaman dalam pengukuran tanah, pemetaan drone, serta pengolahan data geospasial menggunakan ArcGIS, Global Mapper, dan Agisoft Metashape.</p>
-        <div>
-          <span class="chip">Pemetaan Udara</span>
-          <span class="chip">ArcGIS & Global Mapper</span>
-          <span class="chip">Analisis Spasial</span>
-          <span class="chip">Agisoft</span>
+      <main class="hero">
+        <div class="card intro">
+          <h2>Halo, Saya Alvin</h2>
+          <p>Saya lulusan <strong>Teknik Geomatika, Institut Teknologi Sumatera</strong> dengan minat di bidang pemetaan udara, fotogrametri, dan analisis data spasial...</p>
+          <div>
+            <span class="chip">Pemetaan Udara</span>
+            <span class="chip">ArcGIS & Global Mapper</span>
+            <span class="chip">Analisis Spasial</span>
+            <span class="chip">Agisoft</span>
+          </div>
         </div>
 
-        <div style="margin-top:20px">
-          <h3 style="margin-bottom:8px;">Pencapaian & Sorotan</h3>
-          <ul class="muted" style="line-height:1.7">
-            <li>🛰️ Berhasil memetakan area 200 ha menggunakan drone DJI Phantom dengan hasil orthomosaic akurat.</li>
-            <li>📍 Terlibat aktif dalam proyek penetapan batas wilayah antar desa di Lampung dengan hasil Kartometrik.</li>
-            <li>🌿 Berkontribusi pada Program PKM Girimulyo dalam pengembangan wilayah agroforestri berbasis data spasial.</li>
-            <li>🏅 Memiliki sertifikat <strong>Pilot Drone</strong> (Kemenhub RI) dan <strong>Ahli K3 Umum</strong> (BNSP).</li>
-          </ul>
+        <aside class="card">
+          <img src="foto profil.jpeg" alt="Foto Alvin Akhbar Khoery" class="profile-img">
+          <h3>Kontak</h3>
+          <p class="muted">📍 Karawang, Jawa Barat, Indonesia</p>
+          <p class="muted">📧 <a href="mailto:alvinkhoery97@gmail.com">alvinkhoery97@gmail.com</a></p>
+          <p class="muted">📞 0812-8534-4776</p>
+          <p class="muted">🔗 <a href="https://linkedin.com/in/alvin-akhbar-khoery" target="_blank">LinkedIn</a></p>
+        </aside>
+      </main>
+
+      <section id="gallery">
+        <h3>Galeri Dokumentasi</h3>
+        <div class="gallery">
+          <img src="PKM.jpg" alt="Kegiatan PKM">
+          <img src="Drone.jpeg" alt="Kegiatan Drone">
+          <img src="PTSL.jpg" alt="Pengukuran Tanah">
+          <img src="MBKM.jpg" alt="Penetapan Batas">
         </div>
-      </div>
+      </section>
 
-      <aside class="card">
-        <img src="foto profil.jpeg" alt="Foto Alvin Akhbar Khoery" class="profile-img">
-        <h3>Kontak</h3>
-        <p class="muted">📍 Karawang, Jawa Barat, Indonesia</p>
-        <p class="muted">📧 <a href="mailto:alvinkhoery97@gmail.com">alvinkhoery97@gmail.com</a></p>
-        <p class="muted">📞 0812-8534-4776</p>
-        <p class="muted">🔗 <a href="https://linkedin.com/in/alvin-akhbar-khoery" target="_blank">LinkedIn</a></p>
-      </aside>
-    </main>
-
-    <section id="gallery" style="margin-top:20px">
-      <h3>Galeri Dokumentasi</h3>
-      <div class="gallery">
-        <img src="PKM.jpg" alt="Kegiatan PKM">
-        <img src="Drone.jpeg" alt="Kegiatan Drone">
-        <img src="PTSL.jpg" alt="Pengukuran Tanah">
-        <img src="MBKM.jpg" alt="Penetapan Batas">
-      </div>
-    </section>
-
-    <section id="maps" style="margin-top:20px">
-      <h3>Output Peta & Video</h3>
-      <p class="muted">Hasil pemetaan udara dan video dokumentasi kegiatan:</p>
-      <div class="gallery">
-        <img src="Peta Ortho.jpg" alt="Peta Orthophoto">
-        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;">
-          <iframe 
-            src="https://www.youtube.com/embed/5ZKs7kHjFLo?si=FzDAO0Dc_AtjZm50"
-            title="Video PKM Girimulyo"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-            allowfullscreen>
-          </iframe>
+      <section id="maps">
+        <h3>Output Peta & Video</h3>
+        <div class="gallery">
+          <img src="Peta Ortho.jpg" alt="Peta Orthophoto">
+          <iframe src="https://www.youtube.com/embed/5ZKs7kHjFLo?si=FzDAO0Dc_AtjZm50" allowfullscreen></iframe>
+          <img src="Peta Batas.jpeg" alt="Peta Batas Wilayah">
         </div>
-        <img src="Peta Batas.jpeg" alt="Peta Batas Wilayah">
-      </div>
-      <p class="muted" style="text-align:center;margin-top:10px;">🎥 Video kegiatan PKM Girimulyo (2024)</p>
-    </section>
+      </section>
 
-    <section id="skills" style="margin-top:20px">
-      <h3>Keahlian & Sertifikasi</h3>
-      <div class="card">
-        <p><strong>Perangkat Lunak:</strong> ArcGIS, AutoCAD, Agisoft Metashape, Mission Planner</p>
-        <p><strong>Kemampuan Teknis:</strong> Pembuatan Peta, Survei dan Pemetaan, Analisis Spasial, Pengolahan Data Udara</p>
-        <p><strong>Bahasa:</strong> Indonesia (Fasih), Sunda (Fasih), Inggris (Dasar)</p>
-      </div>
-
-      <div style="margin-top:20px">
-        <h4>Sertifikasi</h4>
+      <section id="skills">
+        <h3>Keahlian & Sertifikasi</h3>
         <div class="gallery">
           <img src="K3.jpeg" alt="Sertifikat Ahli K3 Umum BNSP">
           <img src="Pilot.jpeg" alt="Sertifikat Pilot Drone Kemenhub RI">
         </div>
-        <p class="muted" style="margin-top:8px;">📜 Sertifikat resmi Ahli K3 Umum (BNSP) & Pilot Drone (Kemenhub RI).</p>
-      </div>
-    </section>
+      </section>
 
-    <section id="contact" class="card" style="margin-top:20px">
-      <h3>Hubungi Saya</h3>
-      <p class="muted">Tertarik bekerja sama atau membutuhkan informasi lebih lanjut? Silakan hubungi saya melalui email atau LinkedIn.</p>
-      <button class="btn btn-primary" onclick="location.href='mailto:alvinkhoery97@gmail.com'">Kirim Email</button>
-    </section>
+      <section id="contact" class="card">
+        <h3>Hubungi Saya</h3>
+        <p class="muted">Silakan hubungi saya melalui email atau LinkedIn.</p>
+        <button class="btn btn-primary" onclick="location.href='mailto:alvinkhoery97@gmail.com'">Kirim Email</button>
+      </section>
 
-    <footer>
-      © <span id="year"></span> Alvin Akhbar Khoery — Teknik Geomatika.
-    </footer>
+      <footer>
+        © <span id="year"></span> Alvin Akhbar Khoery — Teknik Geomatika.
+      </footer>
+    </div>
   </div>
-  </div> <!-- penutup #portfolio-content -->
 
-  <!-- GSAP untuk animasi -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- Globe 3D Script -->
   <script>
-    window.addEventListener('load', () => {
-      const tl = gsap.timeline();
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.getElementById('globe3d').appendChild(renderer.domElement);
 
-      tl.fromTo("#globe", 
-        { scale: 1, rotate: 0 },
-        { scale: 8, rotate: 25, duration: 3, ease: "power2.inOut" }
-      )
-      .to("#intro-animation", { opacity: 0, duration: 1, delay: 0.5 })
-      .to("#portfolio-content", { opacity: 1, duration: 1 }, "-=0.5");
+  const ambient = new THREE.AmbientLight(0xffffff, 1.2);
+  scene.add(ambient);
 
-      setTimeout(() => {
-        document.getElementById('intro-animation').remove();
-      }, 5000);
-    });
+  const loader = new THREE.TextureLoader();
+  const earthTex = loader.load('https://cdn.jsdelivr.net/gh/fireship-io/threejs-earth/earthmap4k.jpg');
+  const bump = loader.load('https://cdn.jsdelivr.net/gh/fireship-io/threejs-earth/earthbump4k.jpg');
+  const spec = loader.load('https://cdn.jsdelivr.net/gh/fireship-io/threejs-earth/earthspec4k.jpg');
 
-    document.getElementById('year').textContent = new Date().getFullYear();
+  const geo = new THREE.SphereGeometry(2, 64, 64);
+  const mat = new THREE.MeshPhongMaterial({
+    map: earthTex,
+    bumpMap: bump,
+    bumpScale: 0.05,
+    specularMap: spec,
+    specular: new THREE.Color('grey')
+  });
+  const earth = new THREE.Mesh(geo, mat);
+  scene.add(earth);
+
+  camera.position.set(0, 0, 6);
+  const target = new THREE.Vector3(-1.2, 0.3, 0);
+
+  let progress = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    earth.rotation.y += 0.002;
+    if (progress < 1) {
+      progress += 0.005;
+      camera.position.lerpVectors(
+        new THREE.Vector3(0, 0, 6),
+        new THREE.Vector3(-1.2, 0.4, 2.8),
+        progress
+      );
+      camera.lookAt(target);
+    }
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  setTimeout(() => {
+    document.getElementById('intro-animation').style.opacity = '0';
+    document.getElementById('portfolio-content').style.opacity = '1';
+    setTimeout(() => {
+      document.getElementById('intro-animation').remove();
+    }, 1500);
+  }, 7000);
+
+  document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
