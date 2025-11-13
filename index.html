@@ -1,216 +1,137 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Portfolio — Alvin Akhbar Khoery | Teknik Geomatika</title>
-  <meta name="description" content="Portfolio Alvin Akhbar Khoery — Lulusan Teknik Geomatika dengan keahlian pemetaan udara, SIG, dan analisis data spasial.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #0b0d14;
-      color: #e0e3eb;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    h1, h2, h3 {
-      color: #fff;
-    }
-    .card {
-      background: #151924;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,.3);
-    }
-    img {
-      border-radius: 12px;
-      max-width: 100%;
-      height: auto;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-    }
-    .muted {
-      color: #8c92a5;
-    }
-    /* 🌍 Globe Intro */
-    #intro-animation {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at center, #001220, #000);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 1.2s ease;
-    }
-    #globe3d {
-      width: 100vw;
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    #loading-text {
-      position: relative;
-      z-index: 2;
-      margin-top: 32px;
-      color: #a1accb;
-      font-family: 'Inter', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 1px;
-      animation: blink 1.6s infinite;
-    }
-    @keyframes blink {
-      0%, 100% {opacity: .3;}
-      50% {opacity: 1;}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio — Alvin Akhbar Khoery | Teknik Geomatika</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;background:#0b0d14;color:#e0e3eb;overflow-x:hidden}
+.container{max-width:900px;margin:0 auto;padding:40px 20px}
+.card{background:#151924;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 0 10px rgba(0,0,0,.3)}
+img{border-radius:12px;max-width:100%;height:auto}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.muted{color:#8c92a5}
+
+/* 🌍 Intro Globe */
+#intro-animation{
+  position:fixed;inset:0;
+  background:radial-gradient(circle at center,#001220,#000);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:9999;transition:opacity 1.2s ease;
+}
+#globe3d{width:100vw;height:100vh;position:absolute;top:0;left:0;}
+#loading-text{position:relative;z-index:2;margin-top:32px;color:#a1accb;font-size:1.1rem;letter-spacing:1px;animation:blink 1.6s infinite}
+@keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
+</style>
 </head>
 
 <body>
-  <!-- 🌍 Animasi Globe -->
-  <div id="intro-animation">
-    <div id="globe3d"></div>
-    <div id="loading-text">Menampilkan Indonesia...</div>
-  </div>
+<!-- 🌍 Globe Intro -->
+<div id="intro-animation">
+  <div id="globe3d"></div>
+  <div id="loading-text">Menampilkan Indonesia...</div>
+</div>
 
-  <!-- 🔹 Isi Portofolio -->
-  <div id="portfolio-content" style="opacity:0;transition:opacity 1s ease;">
-    <div class="container">
-      <header style="text-align:center;margin-bottom:40px;">
-        <img src="foto profil.jpeg" alt="Foto Alvin Akhbar Khoery" style="width:160px;border-radius:50%;margin-bottom:15px;">
-        <h1>Alvin Akhbar Khoery</h1>
-        <p class="muted">Teknik Geomatika | Institut Teknologi Sumatera</p>
-      </header>
+<!-- 🔹 Isi portofolio -->
+<div id="portfolio-content" style="opacity:0;transition:opacity 1s ease;">
+  <div class="container">
+    <header style="text-align:center;margin-bottom:40px;">
+      <img src="foto profil.jpeg" alt="Foto Alvin Akhbar Khoery" style="width:160px;border-radius:50%;margin-bottom:15px;">
+      <h1>Alvin Akhbar Khoery</h1>
+      <p class="muted">Teknik Geomatika | Institut Teknologi Sumatera</p>
+    </header>
 
-      <section id="about">
-        <h2>Tentang Saya</h2>
-        <div class="card">
-          <p>Saya lulusan Teknik Geomatika dengan minat tinggi pada pemetaan udara, sistem informasi geografis (SIG), serta teknologi drone. Memiliki pengalaman dalam pengolahan citra, pemetaan 3D, dan interpretasi data spasial.</p>
-        </div>
-      </section>
+    <section id="about">
+      <h2>Tentang Saya</h2>
+      <div class="card">
+        <p>Saya lulusan Teknik Geomatika dengan minat tinggi pada pemetaan udara, SIG, dan teknologi drone. Berpengalaman dalam pengolahan citra, pemetaan 3D, dan interpretasi data spasial.</p>
+      </div>
+    </section>
 
-      <section id="skills">
-        <h2>Keahlian & Sertifikasi</h2>
-        <div class="card">
-          <p><strong>Perangkat Lunak:</strong> ArcGIS, AutoCAD, Agisoft Metashape, Mission Planner</p>
-          <p><strong>Kemampuan Teknis:</strong> Pembuatan Peta, Survei dan Pemetaan, Analisis Spasial, Pengolahan Data Udara</p>
-          <p><strong>Bahasa:</strong> Indonesia (Fasih), Sunda (Fasih), Inggris (Dasar)</p>
-        </div>
-
-        <div>
-          <h3>Sertifikasi</h3>
-          <div class="gallery">
-            <img src="K3.jpeg" alt="Sertifikat Ahli K3 Umum BNSP">
-            <img src="Pilot.jpeg" alt="Sertifikat Pilot Drone Kemenhub RI">
-          </div>
-          <p class="muted" style="margin-top:8px;">📜 Sertifikat resmi Ahli K3 Umum (BNSP) & Pilot Drone (Kemenhub RI)</p>
-        </div>
-      </section>
-
-      <section id="portfolio">
-        <h2>Galeri Proyek</h2>
+    <section id="skills">
+      <h2>Keahlian & Sertifikasi</h2>
+      <div class="card">
+        <p><strong>Perangkat Lunak:</strong> ArcGIS, AutoCAD, Agisoft Metashape, Mission Planner</p>
+        <p><strong>Kemampuan Teknis:</strong> Pembuatan Peta, Survei dan Pemetaan, Analisis Spasial, Pengolahan Data Udara</p>
+      </div>
+      <div>
+        <h3>Sertifikasi</h3>
         <div class="gallery">
-          <img src="PKM.jpg" alt="PKM">
-          <img src="Drone.jpeg" alt="Drone">
-          <img src="PTSL.jpg" alt="PTSL">
-          <img src="MBKM.jpg" alt="MBKM">
+          <img src="K3.jpeg" alt="Sertifikat Ahli K3 Umum BNSP">
+          <img src="Pilot.jpeg" alt="Sertifikat Pilot Drone Kemenhub RI">
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="contact" style="margin-top:40px;">
-        <h2>Kontak</h2>
-        <div class="card">
-          <p>📧 alvinkhoery97@gmail.com</p>
-          <p>📱 0812-8534-4776</p>
-          <p>📍 Karawang, Jawa Barat</p>
-        </div>
-      </section>
-    </div>
+    <section id="portfolio">
+      <h2>Galeri Proyek</h2>
+      <div class="gallery">
+        <img src="PKM.jpg" alt="PKM">
+        <img src="Drone.jpeg" alt="Drone">
+        <img src="PTSL.jpg" alt="PTSL">
+        <img src="MBKM.jpg" alt="MBKM">
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:40px;">
+      <h2>Kontak</h2>
+      <div class="card">
+        <p>📧 alvinkhoery97@gmail.com</p>
+        <p>📱 0812-8534-4776</p>
+        <p>📍 Karawang, Jawa Barat</p>
+      </div>
+    </section>
   </div>
+</div>
 
-  <!-- THREE.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
-  <script>
-  window.addEventListener("load", () => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(innerWidth, innerHeight);
-    document.getElementById("globe3d").appendChild(renderer.domElement);
+<!-- THREE.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+<script>
+window.addEventListener("load",()=>{
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,1000);
+  const renderer=new THREE.WebGLRenderer({antialias:true});
+  renderer.setSize(innerWidth,innerHeight);
+  document.getElementById("globe3d").appendChild(renderer.domElement);
 
-    // Cahaya
-    const ambient = new THREE.AmbientLight(0xffffff, 1.2);
-    scene.add(ambient);
+  const light=new THREE.PointLight(0xffffff,1.5);
+  light.position.set(5,3,5);
+  scene.add(light);
 
-    // Textur bumi
-    const loader = new THREE.TextureLoader();
-    const earthTex = loader.load(
-      "https://raw.githubusercontent.com/fireship-io/threejs-earth/master/earthmap4k.jpg",
-      startAnimation, // callback setelah texture selesai load
-      undefined,
-      () => {
-        console.warn("⚠️ Gagal load texture globe. Menggunakan warna default.");
-        startAnimation();
-      }
-    );
-
-    let globe;
-    function startAnimation() {
-      if (!globe) {
-        globe = new THREE.Mesh(
-          new THREE.SphereGeometry(2, 64, 64),
-          new THREE.MeshPhongMaterial({ map: earthTex || null, color: 0x225588 })
-        );
-        scene.add(globe);
-      }
-
-      camera.position.set(0, 0, 6);
-      const target = new THREE.Vector3(-1.2, 0.3, 0);
-      let t = 0;
-
-      function animate() {
-        requestAnimationFrame(animate);
-        globe.rotation.y += 0.002;
-        if (t < 1) {
-          t += 0.0045;
-          camera.position.lerpVectors(
-            new THREE.Vector3(0, 0, 6),
-            new THREE.Vector3(-1.2, 0.4, 2.8),
-            t
-          );
-          camera.lookAt(target);
-        }
-        renderer.render(scene, camera);
-      }
-      animate();
-
-      // Transisi ke halaman utama
-      setTimeout(() => {
-        const intro = document.getElementById("intro-animation");
-        const port = document.getElementById("portfolio-content");
-        intro.style.opacity = "0";
-        port.style.opacity = "1";
-        setTimeout(() => intro.remove(), 1500);
-      }, 7000);
-    }
-
-    window.addEventListener("resize", () => {
-      camera.aspect = innerWidth / innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(innerWidth, innerHeight);
-    });
+  // globe tanpa texture (gradient)
+  const mat=new THREE.ShaderMaterial({
+    uniforms:{color1:{value:new THREE.Color(0x0055aa)},color2:{value:new THREE.Color(0x002244)}},
+    vertexShader:`varying vec3 vPos;void main(){vPos=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+    fragmentShader:`varying vec3 vPos;uniform vec3 color1;uniform vec3 color2;
+    void main(){float h=normalize(vPos).y*0.5+0.5;gl_FragColor=vec4(mix(color2,color1,h),1.0);}`
   });
-  </script>
+  const globe=new THREE.Mesh(new THREE.SphereGeometry(2,64,64),mat);
+  scene.add(globe);
+  camera.position.set(0,0,6);
+
+  let angle=0;
+  function animate(){
+    requestAnimationFrame(animate);
+    angle+=0.005;
+    globe.rotation.y=angle;
+    renderer.render(scene,camera);
+  }
+  animate();
+
+  // setelah 5 detik, fade out intro
+  setTimeout(()=>{
+    document.getElementById("intro-animation").style.opacity="0";
+    document.getElementById("portfolio-content").style.opacity="1";
+    setTimeout(()=>document.getElementById("intro-animation").remove(),1500);
+  },5000);
+
+  window.addEventListener("resize",()=>{
+    camera.aspect=innerWidth/innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth,innerHeight);
+  });
+});
+</script>
 </body>
 </html>
